@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" data-bs-theme="dark">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+  <meta name="robots" content="none" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0" />
+  <title>CPUID</title>
+
+  <script type="text/javascript" defer="defer" crossorigin="anonymous" referrerpolicy="no-referrer" src="https://cdn.jsdelivr.net/npm/core-js-bundle/minified.min.js"></script>
+  <script type="text/javascript" defer="defer" crossorigin="anonymous" referrerpolicy="no-referrer" src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+  <script type="text/javascript" defer="defer" crossorigin="anonymous" referrerpolicy="no-referrer" src="https://cdn.jsdelivr.net/npm/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script type="text/javascript" defer="defer" src="/script.js"></script>
+
+  <link type="text/css" rel="stylesheet" crossorigin="anonymous" referrerpolicy="no-referrer" href="https://cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap.min.css" />
+  <link type="text/css" rel="stylesheet" href="/style.css" />
+
+</head>
+
+<body>
+  <div class="container py-3">
+
+    <h1>CPUID</h1>
+
+    <div>
+      <h2>Leaf 0</h2>
+      <table>
+        <tbody>
+          <tr>
+            <td><label for="LEAF0-string">String:</label></td>
+            <td><input id="LEAF0-string" maxlength="12" value="" /></td>
+            <td><button type="button" id="fromLeaf0String" class="btn btn-primary">Calculate</button></td>
+          </tr>
+          <tr>
+            <td>Register</td>
+            <td><button type="button" class="btn btn-primary" id="fromLeaf0Bin">Calculate Bin</button></td>
+            <td><button type="button" class="btn btn-primary" id="fromLeaf0Hex">Calculate Hex</button></td>
+          </tr>
+          <tr>
+            <td><label>EBX=0:</label></td>
+            <td><input id="EBX0-binString" title="EBX0-binString" class="binString" value="" /></td>
+            <td><input id="EBX0-hexString" title="EBX0-hexString" class="hexString" maxlength="10" value="" /></td>
+          </tr>
+          <tr>
+            <td><label>ECX=0:</label></td>
+            <td><input id="ECX0-binString" title="EBX0-binString" class="binString" value="" /></td>
+            <td><input id="ECX0-hexString" title="ECX0-hexString" class="hexString" maxlength="10" value="" /></td>
+          </tr>
+          <tr>
+            <td><label>EDX=0:</label></td>
+            <td><input id="EDX0-binString" title="EBX0-binString" class="binString" value="" /></td>
+            <td><input id="EDX0-hexString" title="EDX0-hexString" class="hexString" maxlength="10" value="" /></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <hr />
+
+    <div class="mt-4">
+      <h2>Leaf 1</h2>
+
+      <div class="mt-4 register" data-register="EAX1">
+        <h3>EAX=1</h3>
+        <ul>
+          <li><a target="_blank" rel="noopener" href="https://en.wikichip.org/wiki/intel/cpuid">Intel CPUIDs</a></li>
+          <li><a target="_blank" rel="noopener" href="https://en.wikichip.org/wiki/amd/cpuid">AMD CPUIDs</a></li>
+        </ul>
+        <table>
+          <tbody>
+            <tr>
+              <td><label for="EAX1-reserved1">Reserved 1:</label></td>
+              <td>0x <input id="EAX1-reserved1" value="0" disabled="disabled" /></td>
+              <td rowspan="8"><button type="button" class="btn btn-primary fromEAX1">Calculate</button></td>
+            </tr>
+            <tr>
+              <td><label for="EAX1-reserved2">Reserved 2:</label></td>
+              <td>0x <input id="EAX1-reserved2" value="0" disabled="disabled" /></td>
+            </tr>
+            <tr>
+              <td><label for="EAX1-processorType">Processor Type:</label></td>
+              <td>0x <input type="number" id="EAX1-processorType" min="0" max="3" value="" /></td>
+            </tr>
+            <tr>
+              <td><label for="EAX1-extendedFamilyId">Extended Family:</label></td>
+              <td>0x <input id="EAX1-extendedFamilyId" maxlength="2" value="" /></td>
+            </tr>
+            <tr>
+              <td><label for="EAX1-familyId">(Base) Family:</label></td>
+              <td>0x <input id="EAX1-familyId" maxlength="1" value="" /></td>
+            </tr>
+            <tr>
+              <td><label for="EAX1-extendedModelId">Extended Model:</label></td>
+              <td>0x <input id="EAX1-extendedModelId" maxlength="1" value="" /></td>
+            </tr>
+            <tr>
+              <td><label for="EAX1-modelId">Model:</label></td>
+              <td>0x <input id="EAX1-modelId" maxlength="1" value="" /></td>
+            </tr>
+            <tr>
+              <td><label for="EAX1-steppingId">Stepping:</label></td>
+              <td>0x <input id="EAX1-steppingId" maxlength="1" value="" /></td>
+            </tr>
+            <tr>
+              <td><label for="EAX1-actualFamilyId">Actual Family:</label></td>
+              <td><input id="EAX1-actualFamilyId" value="" /></td>
+            </tr>
+            <tr>
+              <td><label for="EAX1-actualModelId">Actual Model:</label></td>
+              <td><input id="EAX1-actualModelId" value="" /></td>
+            </tr>
+          </tbody>
+        </table>
+        <table class="mt-3">
+          <tbody>
+            <tr>
+              <td><label for="EAX1-binString">Bin:</label></td>
+              <td><input id="EAX1-binString" class="binString" value="" /></td>
+              <td><button type="button" class="btn btn-primary fromBinString">Calculate</button></td>
+            </tr>
+            <tr>
+              <td><label for="EAX1-hexString">Hex:</label></td>
+              <td><input id="EAX1-hexString" class="hexString" value="" /></td>
+              <td><button type="button" class="btn btn-primary fromHexString">Calculate</button></td>
+            </tr>
+          </tbody>
+        </table>
+        <table class="mt-3">
+          <tbody>
+            <tr class="text-align-center">
+              <td>Bit</td>
+              <td>31</td>
+              <td>30</td>
+              <td>29</td>
+              <td>28</td>
+              <td>27</td>
+              <td>26</td>
+              <td>25</td>
+              <td>24</td>
+              <td>23</td>
+              <td>22</td>
+              <td>21</td>
+              <td>20</td>
+              <td>19</td>
+              <td>18</td>
+              <td>17</td>
+              <td>16</td>
+              <td>15</td>
+              <td>14</td>
+              <td>13</td>
+              <td>12</td>
+              <td>11</td>
+              <td>10</td>
+              <td>9</td>
+              <td>8</td>
+              <td>7</td>
+              <td>6</td>
+              <td>5</td>
+              <td>4</td>
+              <td>3</td>
+              <td>2</td>
+              <td>1</td>
+              <td>0</td>
+            </tr>
+            <tr class="text-align-center">
+              <td>Description</td>
+              <td colspan="4">Reserved 1</td>
+              <td colspan="8">Extended Family ID</td>
+              <td colspan="4">Extended Model ID</td>
+              <td colspan="2">Reserved 2</td>
+              <td colspan="2">Processor Type</td>
+              <td colspan="4">Family ID</td>
+              <td colspan="4">Model</td>
+              <td colspan="4">Stepping ID</td>
+            </tr>
+            <tr class="text-align-center binValues">
+              <td>Value</td>
+              <td><input type="number" title="bin-31" min="0" max="1" value="0" disabled="disabled" /></td>
+              <td><input type="number" title="bin-30" min="0" max="1" value="0" disabled="disabled" /></td>
+              <td><input type="number" title="bin-29" min="0" max="1" value="0" disabled="disabled" /></td>
+              <td><input type="number" title="bin-28" min="0" max="1" value="0" disabled="disabled" /></td>
+              <td><input type="number" title="bin-27" min="0" max="1" value="0" /></td>
+              <td><input type="number" title="bin-26" min="0" max="1" value="0" /></td>
+              <td><input type="number" title="bin-25" min="0" max="1" value="0" /></td>
+              <td><input type="number" title="bin-24" min="0" max="1" value="0" /></td>
+              <td><input type="number" title="bin-23" min="0" max="1" value="0" /></td>
+              <td><input type="number" title="bin-22" min="0" max="1" value="0" /></td>
+              <td><input type="number" title="bin-21" min="0" max="1" value="0" /></td>
+              <td><input type="number" title="bin-20" min="0" max="1" value="0" /></td>
+              <td><input type="number" title="bin-19" min="0" max="1" value="0" /></td>
+              <td><input type="number" title="bin-18" min="0" max="1" value="0" /></td>
+              <td><input type="number" title="bin-17" min="0" max="1" value="0" /></td>
+              <td><input type="number" title="bin-16" min="0" max="1" value="0" /></td>
+              <td><input type="number" title="bin-15" min="0" max="1" value="0" disabled="disabled" /></td>
+              <td><input type="number" title="bin-14" min="0" max="1" value="0" disabled="disabled" /></td>
+              <td><input type="number" title="bin-13" min="0" max="1" value="0" /></td>
+              <td><input type="number" title="bin-12" min="0" max="1" value="0" /></td>
+              <td><input type="number" title="bin-11" min="0" max="1" value="0" /></td>
+              <td><input type="number" title="bin-10" min="0" max="1" value="0" /></td>
+              <td><input type="number" title="bin-9" min="0" max="1" value="0" /></td>
+              <td><input type="number" title="bin-8" min="0" max="1" value="0" /></td>
+              <td><input type="number" title="bin-7" min="0" max="1" value="0" /></td>
+              <td><input type="number" title="bin-6" min="0" max="1" value="0" /></td>
+              <td><input type="number" title="bin-5" min="0" max="1" value="0" /></td>
+              <td><input type="number" title="bin-4" min="0" max="1" value="0" /></td>
+              <td><input type="number" title="bin-3" min="0" max="1" value="0" /></td>
+              <td><input type="number" title="bin-2" min="0" max="1" value="0" /></td>
+              <td><input type="number" title="bin-1" min="0" max="1" value="0" /></td>
+              <td><input type="number" title="bin-0" min="0" max="1" value="0" /></td>
+              <td><button type="button" class="btn btn-primary fromBinValues">Calculate</button></td>
+            </tr>
+            <tr class="text-align-center hexValues">
+              <td>Hex</td>
+              <td colspan="4"><input title="hex-7" value="0" disabled="disabled" /></td>
+              <td colspan="4"><input title="hex-6" value="0" /></td>
+              <td colspan="4"><input title="hex-5" value="0" /></td>
+              <td colspan="4"><input title="hex-4" value="0" /></td>
+              <td colspan="4"><input title="hex-3" value="0" /></td>
+              <td colspan="4"><input title="hex-2" value="0" /></td>
+              <td colspan="4"><input title="hex-1" value="0" /></td>
+              <td colspan="4"><input title="hex-0" value="0" /></td>
+              <td><button type="button" class="btn btn-primary fromHexValues">Calculate</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="mt-4 register">
+        <h3>ECX=1</h3>
+        <table>
+          <tbody>
+            <tr>
+              <td><label for="ECX1-binString">Bin:</label></td>
+              <td><input id="ECX1-binString" class="binString" value="" /></td>
+              <td><button type="button" class="btn btn-primary fromBinString">Calculate</button></td>
+            </tr>
+            <tr>
+              <td><label for="ECX1-hexString">Hex:</label></td>
+              <td><input id="ECX1-hexString" class="hexString" value="" /></td>
+              <td><button type="button" class="btn btn-primary fromHexString">Calculate</button></td>
+            </tr>
+          </tbody>
+        </table>
+        <table class="mt-3">
+          <tbody>
+            <tr class="text-align-center">
+              <td>Bit</td>
+              <td>31</td>
+              <td>30</td>
+              <td>29</td>
+              <td>28</td>
+              <td>27</td>
+              <td>26</td>
+              <td>25</td>
+              <td>24</td>
+              <td>23</td>
+              <td>22</td>
+              <td>21</td>
+              <td>20</td>
+              <td>19</td>
+              <td>18</td>
+              <td>17</td>
+              <td>16</td>
+              <td>15</td>
+              <td>14</td>
+              <td>13</td>
+              <td>12</td>
+              <td>11</td>
+              <td>10</td>
+              <td>9</td>
+              <td>8</td>
+              <td>7</td>
+              <td>6</td>
+              <td>5</td>
+              <td>4</td>
+              <td>3</td>
+              <td>2</td>
+              <td>1</td>
+              <td>0</td>
+            </tr>
+            <tr class="rotate">
+              <td>Feature</td>
+              <td>hypervisor</td>
+              <td>rdrnd</td>
+              <td>f16c</td>
+              <td>avx</td>
+              <td>osxsave</td>
+              <td>xsave</td>
+              <td>aes-ni</td>
+              <td>tsc-deadline</td>
+              <td>popcnt</td>
+              <td>movbe</td>
+              <td>x2apic</td>
+              <td>sse4.2</td>
+              <td>sse4.1</td>
+              <td>dca</td>
+              <td>pcid</td>
+              <td>(reserved)</td>
+              <td>pdcm</td>
+              <td>xtpr</td>
+              <td>cx16</td>
+              <td>fma</td>
+              <td>sdbg</td>
+              <td>cnxt-id</td>
+              <td>ssse3</td>
+              <td>tm2</td>
+              <td>est</td>
+              <td>smx</td>
+              <td>vmx</td>
+              <td>ds-cpl</td>
+              <td>monitor</td>
+              <td>dtes64</td>
+              <td>pclmulqdq</td>
+              <td>sse3</td>
+            </tr>
+            <tr class="text-align-center binValues">
+              <td>Value</td>
+              <td><input type="number" title="bin-31" min="0" max="1" value="0" /></td>
+              <td><input type="number" title="bin-30" min="0" max="1" value="0" /></td>
+              <td><input type="number" title="bin-29" min="0" max="1" value="0" /></td>
+              <td><input type="number" title="bin-28" min="0" max="1" value="0" /></td>
+              <td><input type="number" title="bin-27" min="0" max="1" value="0" /></td>
+              <td><input type="number" title="bin-26" min="0" max="1" value="0" /></td>
+              <td><input type="number" title="bin-25" min="0" max="1" value="0" /></td>
+              <td><input type="number" title="bin-24" min="0" max="1" value="0" /></td>
+              <td><input type="number" title="bin-23" min="0" max="1" value="0" /></td>
+              <td><input type="number" title="bin-22" min="0" max="1" value="0" /></td>
+              <td><input type="number" title="bin-21" min="0" max="1" value="0" /></td>
+              <td><input type="number" title="bin-20" min="0" max="1" value="0" /></td>
+              <td><input type="number" title="bin-19" min="0" max="1" value="0" /></td>
+              <td><input type="number" title="bin-18" min="0" max="1" value="0" /></td>
+              <td><input type="number" title="bin-17" min="0" max="1" value="0" /></td>
+              <td><input type="number" title="bin-16" min="0" max="1" value="0" disabled="disabled" /></td>
+              <td><input type="number" title="bin-15" min="0" max="1" value="0" /></td>
+              <td><input type="number" title="bin-14" min="0" max="1" value="0" /></td>
+              <td><input type="number" title="bin-13" min="0" max="1" value="0" /></td>
+              <td><input type="number" title="bin-12" min="0" max="1" value="0" /></td>
+              <td><input type="number" title="bin-11" min="0" max="1" value="0" /></td>
+              <td><input type="number" title="bin-10" min="0" max="1" value="0" /></td>
+              <td><input type="number" title="bin-9" min="0" max="1" value="0" /></td>
+              <td><input type="number" title="bin-8" min="0" max="1" value="0" /></td>
+              <td><input type="number" title="bin-7" min="0" max="1" value="0" /></td>
+              <td><input type="number" title="bin-6" min="0" max="1" value="0" /></td>
+              <td><input type="number" title="bin-5" min="0" max="1" value="0" /></td>
+              <td><input type="number" title="bin-4" min="0" max="1" value="0" /></td>
+              <td><input type="number" title="bin-3" min="0" max="1" value="0" /></td>
+              <td><input type="number" title="bin-2" min="0" max="1" value="0" /></td>
+              <td><input type="number" title="bin-1" min="0" max="1" value="0" /></td>
+              <td><input type="number" title="bin-0" min="0" max="1" value="0" /></td>
+              <td><button type="button" class="btn btn-primary fromBinValues">Calculate</button></td>
+            </tr>
+            <tr class="text-align-center hexValues">
+              <td>Hex</td>
+              <td colspan="4"><input title="hex-7" value="0" /></td>
+              <td colspan="4"><input title="hex-6" value="0" /></td>
+              <td colspan="4"><input title="hex-5" value="0" /></td>
+              <td colspan="4"><input title="hex-4" value="0" /></td>
+              <td colspan="4"><input title="hex-3" value="0" /></td>
+              <td colspan="4"><input title="hex-2" value="0" /></td>
+              <td colspan="4"><input title="hex-1" value="0" /></td>
+              <td colspan="4"><input title="hex-0" value="0" /></td>
+              <td><button type="button" class="btn btn-primary fromHexValues">Calculate</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="mt-4 register">
+        <h3>EDX=1</h3>
+        <table>
+          <tbody>
+            <tr>
+              <td><label for="EDX1-binString">Bin:</label></td>
+              <td><input id="EDX1-binString" class="binString" value="" /></td>
+              <td><button type="button" class="btn btn-primary fromBinString">Calculate</button></td>
+            </tr>
+            <tr>
+              <td><label for="EDX1-hexString">Hex:</label></td>
+              <td><input id="EDX1-hexString" class="hexString" value="" /></td>
+              <td><button type="button" class="btn btn-primary fromHexString">Calculate</button></td>
+            </tr>
+          </tbody>
+        </table>
+        <table class="mt-3">
+          <tbody>
+            <tr class="text-align-center">
+              <td>Bit</td>
+              <td>31</td>
+              <td>30</td>
+              <td>29</td>
+              <td>28</td>
+              <td>27</td>
+              <td>26</td>
+              <td>25</td>
+              <td>24</td>
+              <td>23</td>
+              <td>22</td>
+              <td>21</td>
+              <td>20</td>
+              <td>19</td>
+              <td>18</td>
+              <td>17</td>
+              <td>16</td>
+              <td>15</td>
+              <td>14</td>
+              <td>13</td>
+              <td>12</td>
+              <td>11</td>
+              <td>10</td>
+              <td>9</td>
+              <td>8</td>
+              <td>7</td>
+              <td>6</td>
+              <td>5</td>
+              <td>4</td>
+              <td>3</td>
+              <td>2</td>
+              <td>1</td>
+              <td>0</td>
+            </tr>
+            <tr class="rotate">
+              <td>Feature</td>
+              <td>pbe</td>
+              <td>ia64</td>
+              <td>tm</td>
+              <td>htt</td>
+              <td>ss</td>
+              <td>sse2</td>
+              <td>sse</td>
+              <td>fxsr</td>
+              <td>mmx</td>
+              <td>acpi</td>
+              <td>ds</td>
+              <td>nx</td>
+              <td>clfsh</td>
+              <td>psn</td>
+              <td>pse-36</td>
+              <td>pat</td>
+              <td>cmov</td>
+              <td>mca</td>
+              <td>pge</td>
+              <td>mtrr</td>
+              <td>sep</td>
+              <td>(reserved)</td>
+              <td>apic</td>
+              <td>cx8</td>
+              <td>mce</td>
+              <td>pae</td>
+              <td>msr</td>
+              <td>tsc</td>
+              <td>pse</td>
+              <td>de</td>
+              <td>vme</td>
+              <td>fpu</td>
+            </tr>
+            <tr class="text-align-center binValues">
+              <td>Value</td>
+              <td><input type="number" title="bin-31" min="0" max="1" value="0" /></td>
+              <td><input type="number" title="bin-30" min="0" max="1" value="0" /></td>
+              <td><input type="number" title="bin-29" min="0" max="1" value="0" /></td>
+              <td><input type="number" title="bin-28" min="0" max="1" value="0" /></td>
+              <td><input type="number" title="bin-27" min="0" max="1" value="0" /></td>
+              <td><input type="number" title="bin-26" min="0" max="1" value="0" /></td>
+              <td><input type="number" title="bin-25" min="0" max="1" value="0" /></td>
+              <td><input type="number" title="bin-24" min="0" max="1" value="0" /></td>
+              <td><input type="number" title="bin-23" min="0" max="1" value="0" /></td>
+              <td><input type="number" title="bin-22" min="0" max="1" value="0" /></td>
+              <td><input type="number" title="bin-21" min="0" max="1" value="0" /></td>
+              <td><input type="number" title="bin-20" min="0" max="1" value="0" /></td>
+              <td><input type="number" title="bin-19" min="0" max="1" value="0" /></td>
+              <td><input type="number" title="bin-18" min="0" max="1" value="0" /></td>
+              <td><input type="number" title="bin-17" min="0" max="1" value="0" /></td>
+              <td><input type="number" title="bin-16" min="0" max="1" value="0" /></td>
+              <td><input type="number" title="bin-15" min="0" max="1" value="0" /></td>
+              <td><input type="number" title="bin-14" min="0" max="1" value="0" /></td>
+              <td><input type="number" title="bin-13" min="0" max="1" value="0" /></td>
+              <td><input type="number" title="bin-12" min="0" max="1" value="0" /></td>
+              <td><input type="number" title="bin-11" min="0" max="1" value="0" /></td>
+              <td><input type="number" title="bin-10" min="0" max="1" value="0" disabled="disabled" /></td>
+              <td><input type="number" title="bin-9" min="0" max="1" value="0" /></td>
+              <td><input type="number" title="bin-8" min="0" max="1" value="0" /></td>
+              <td><input type="number" title="bin-7" min="0" max="1" value="0" /></td>
+              <td><input type="number" title="bin-6" min="0" max="1" value="0" /></td>
+              <td><input type="number" title="bin-5" min="0" max="1" value="0" /></td>
+              <td><input type="number" title="bin-4" min="0" max="1" value="0" /></td>
+              <td><input type="number" title="bin-3" min="0" max="1" value="0" /></td>
+              <td><input type="number" title="bin-2" min="0" max="1" value="0" /></td>
+              <td><input type="number" title="bin-1" min="0" max="1" value="0" /></td>
+              <td><input type="number" title="bin-0" min="0" max="1" value="0" /></td>
+              <td><button type="button" class="btn btn-primary fromBinValues">Calculate</button></td>
+            </tr>
+            <tr class="text-align-center hexValues">
+              <td>Hex</td>
+              <td colspan="4"><input title="hex-7" value="0" /></td>
+              <td colspan="4"><input title="hex-6" value="0" /></td>
+              <td colspan="4"><input title="hex-5" value="0" /></td>
+              <td colspan="4"><input title="hex-4" value="0" /></td>
+              <td colspan="4"><input title="hex-3" value="0" /></td>
+              <td colspan="4"><input title="hex-2" value="0" /></td>
+              <td colspan="4"><input title="hex-1" value="0" /></td>
+              <td colspan="4"><input title="hex-0" value="0" /></td>
+              <td><button type="button" class="btn btn-primary fromHexValues">Calculate</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</body>
+
+</html>

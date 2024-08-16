@@ -1,0 +1,41 @@
+table,
+td {
+  border: 1px solid white;
+}
+
+td {
+  padding: 0.5rem;
+}
+
+.rotate td:not(:first-of-type) {
+  transform: rotate(270deg);
+  height: 9rem;
+  text-wrap: nowrap;
+  text-align: center;
+}
+
+.text-align-center {
+  text-align: center;
+  text-wrap: nowrap;
+}
+
+.text-align-center input {
+  width: 2rem;
+  margin: auto;
+  text-align: center;
+}
+
+.binString {
+  width: 20rem;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  max-width: none;
+  width: -moz-fit-content;
+  width: fit-content;
+}
