@@ -6,7 +6,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
   <meta name="robots" content="none" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>CPUID</title>
 
   <script type="text/javascript" defer="defer" crossorigin="anonymous" referrerpolicy="no-referrer" src="https://cdn.jsdelivr.net/npm/core-js-bundle/minified.min.js"></script>
@@ -26,6 +26,7 @@
 
     <div>
       <h2>Leaf 0</h2>
+      <a href="https://en.wikipedia.org/wiki/CPUID#EAX=0:_Highest_Function_Parameter_and_Manufacturer_ID">List of Processor Manufacturer ID Strings</a>
       <table>
         <tbody>
           <tr>
@@ -61,7 +62,7 @@
 
     <div class="mt-4">
       <h2>Leaf 1</h2>
-
+      <a href="https://en.wikipedia.org/wiki/CPUID#EAX=1:_Processor_Info_and_Feature_Bits">Processor Info and Feature Bits</a>
       <div class="mt-4 register" data-register="EAX1">
         <h3>EAX=1</h3>
         <ul>
@@ -300,7 +301,7 @@
               <td>(reserved)</td>
               <td>pdcm</td>
               <td>xtpr</td>
-              <td>cx16</td>
+              <td>cx16 (Win11 req.)</td>
               <td>fma</td>
               <td>sdbg</td>
               <td>cnxt-id</td>
