@@ -2,6 +2,10 @@
 
 $(function () {
 
+  // https://www.npmjs.com/package/cpuid-js
+  // https://www.npmjs.com/package/cpuid-git
+  // https://www.npmjs.com/package/cpuid
+
   function formatBin(bin) {
     return bin.includes(':') ? bin.split(':').map(c => c.padStart(4, '0')) : bin.padStart(32, '0').match(/.{1,4}/g);
   }
